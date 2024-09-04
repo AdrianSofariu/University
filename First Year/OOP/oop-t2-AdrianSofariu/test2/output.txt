@@ -1,0 +1,2 @@
+Temperature sensor -- prod1 1C 2C 3C  diameter=2 price=17
+Humidity sensor -- prod2 30% 40%  price=4
