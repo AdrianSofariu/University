@@ -1,0 +1,3 @@
+﻿  Source.c
+C:\OOP\assignments\a1-AdrianSofariu-1\Problem5\Source.c(211,5): warning C4013: 'exit' undefined; assuming extern returning int
+  Problem5.vcxproj -> C:\OOP\assignments\a1-AdrianSofariu-1\Problem5\x64\Debug\Problem5.exe

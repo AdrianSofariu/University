@@ -1,0 +1,7 @@
+﻿  DynamicArray.c
+C:\Uni\OOP\assignments\a2-3-AdrianSofariu\SmartFridge\DynamicArray.c(116,11): warning C4047: '!=': 'int (__cdecl *)(DynamicArray *,TElement)' differs in levels of indirection from 'int'
+C:\Uni\OOP\assignments\a2-3-AdrianSofariu\SmartFridge\DynamicArray.c(143,3): warning C4047: 'return': 'TElement *' differs in levels of indirection from 'int'
+C:\Uni\OOP\assignments\a2-3-AdrianSofariu\SmartFridge\DynamicArray.c(145,3): warning C4047: 'return': 'TElement *' differs in levels of indirection from 'int'
+  entrypoint.c
+  Generating Code...
+  SmartFridge.vcxproj -> C:\Uni\OOP\assignments\a2-3-AdrianSofariu\SmartFridge\x64\Debug\SmartFridge.exe

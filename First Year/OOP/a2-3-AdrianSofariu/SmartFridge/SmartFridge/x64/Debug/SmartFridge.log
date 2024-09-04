@@ -1,0 +1,8 @@
+﻿  Controller.c
+C:\Uni\OOP\assignments\a2-3-AdrianSofariu\SmartFridge\Controller.c(60,31): warning C4133: 'function': incompatible types - from 'OperationsArray *' to 'DynamicArray *'
+C:\Uni\OOP\assignments\a2-3-AdrianSofariu\SmartFridge\Controller.c(65,80): warning C4020: 'updateOperation': too many actual parameters
+C:\Uni\OOP\assignments\a2-3-AdrianSofariu\SmartFridge\Controller.c(67,31): warning C4133: 'function': incompatible types - from 'OperationsArray *' to 'DynamicArray *'
+C:\Uni\OOP\assignments\a2-3-AdrianSofariu\SmartFridge\Controller.c(97,31): warning C4133: 'function': incompatible types - from 'OperationsArray *' to 'DynamicArray *'
+C:\Uni\OOP\assignments\a2-3-AdrianSofariu\SmartFridge\Controller.c(128,31): warning C4133: 'function': incompatible types - from 'OperationsArray *' to 'DynamicArray *'
+C:\Uni\OOP\assignments\a2-3-AdrianSofariu\SmartFridge\Controller.c(327,35): warning C4133: 'function': incompatible types - from 'OperationsArray *' to 'DynamicArray *'
+  SmartFridge.vcxproj -> C:\Uni\OOP\assignments\a2-3-AdrianSofariu\SmartFridge\x64\Debug\SmartFridge.exe
