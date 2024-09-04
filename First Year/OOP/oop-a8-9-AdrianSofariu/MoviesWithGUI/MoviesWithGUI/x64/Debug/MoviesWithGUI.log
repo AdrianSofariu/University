@@ -1,0 +1,3 @@
+﻿  UserWidget.cpp
+C:\Uni\OOP\assignments\oop-a8-9-AdrianSofariu\MoviesWithGUI\UserWidget.cpp(124,35): warning C4101: 'e': unreferenced local variable
+  MoviesWithGUI.vcxproj -> C:\Uni\OOP\assignments\oop-a8-9-AdrianSofariu\MoviesWithGUI\x64\Debug\MoviesWithGUI.exe
