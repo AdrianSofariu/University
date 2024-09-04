@@ -1,0 +1,18 @@
+﻿  App.cpp
+C:\Users\Asus\Downloads\Matrix\Matrix.h(14,2): warning C4091: 'typedef ': ignored on left of 'MElem' when no variable is declared
+  (compiling source file '../../../Users/Asus/Downloads/Matrix/App.cpp')
+  
+  ExtendedTest.cpp
+C:\Users\Asus\Downloads\Matrix\Matrix.h(14,2): warning C4091: 'typedef ': ignored on left of 'MElem' when no variable is declared
+  (compiling source file '../../../Users/Asus/Downloads/Matrix/ExtendedTest.cpp')
+  
+  Matrix.cpp
+C:\Users\Asus\Downloads\Matrix\Matrix.h(14,2): warning C4091: 'typedef ': ignored on left of 'MElem' when no variable is declared
+  (compiling source file '../../../Users/Asus/Downloads/Matrix/Matrix.cpp')
+  
+  ShortTest.cpp
+C:\Users\Asus\Downloads\Matrix\Matrix.h(14,2): warning C4091: 'typedef ': ignored on left of 'MElem' when no variable is declared
+  (compiling source file '../../../Users/Asus/Downloads/Matrix/ShortTest.cpp')
+  
+  Generating Code...
+  Assignment3.vcxproj -> C:\Uni\DSA\Assignment3\x64\Debug\Assignment3.exe
