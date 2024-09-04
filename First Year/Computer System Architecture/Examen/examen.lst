@@ -1,0 +1,86 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  extern scanf, fopen, fclose, fprintf
+    11                                  import scanf msvcrt.dll
+    12                                  import fopen msvcrt.dll
+    13                                  import fclose msvcrt.dll
+    14                                  import fprintf msvcrt.dll
+    15                                  
+    16                                  ;A file name is given in the data segment. Read from the console numbers in base 10, until 0 is met.
+    17                                  ;Write to the file each number followed by the product with all the numbers read so far.
+    18                                  
+    19                                  ; our data is declared here (the variables needed by our program)
+    20                                  segment data use32 class=data
+    21 00000000 6F75742E74787400            filename db "out.txt",0
+    22 00000008 256400                      readformat db "%d",0
+    23 0000000B 2564202D2025640A00          writeformat db "%d - %d",10,0
+    24 00000014 6100                        appendmode db "a",0
+    25 00000016 <res 00000004>              filedesc resd 1
+    26 0000001A <res 00000004>              number resd 1
+    27 0000001E 01000000                    product dd 1
+    28                                  
+    29                                  ; our code starts here
+    30                                  segment code use32 class=code
+    31                                      start:
+    32                                      
+    33                                          ;open output file in append mode
+    34 00000000 68[14000000]                    push dword appendmode
+    35 00000005 68[00000000]                    push dword  filename
+    36 0000000A FF15[00000000]                  call [fopen]
+    37 00000010 83C408                          add esp, 4*2
+    38                                          
+    39                                          ; check if file is open
+    40 00000013 83F800                          cmp eax, 0
+    41 00000016 7462                            je end
+    42                                          
+    43                                          ; save descriptor
+    44 00000018 A3[16000000]                    mov [filedesc], eax
+    45                                          
+    46                                          repeat:
+    47                                          
+    48                                          ; read a number
+    49 0000001D 68[1A000000]                    push dword number
+    50 00000022 68[08000000]                    push dword readformat
+    51 00000027 FF15[00000000]                  call [scanf]
+    52 0000002D 83C408                          add esp, 4*2
+    53                                          
+    54                                          ; if we read 0 then we can end
+    55 00000030 833D[1A000000]00                cmp dword [number], 0
+    56 00000037 7432                            je closefile
+    57                                          
+    58                                          ; if number is not 0 we multiply the product
+    59                                          ; whole product is in edx:eax
+    60 00000039 A1[1E000000]                    mov eax, [product]
+    61 0000003E F72D[1A000000]                  imul dword [number]
+    62                                          
+    63                                          ;save only the low dword in memory
+    64 00000044 A3[1E000000]                    mov [product], eax
+    65                                          
+    66                                          ; write number and  product in file with format "number - product\n"
+    67 00000049 FF35[1E000000]                  push dword [product]
+    68 0000004F FF35[1A000000]                  push dword [number]
+    69 00000055 68[0B000000]                    push dword writeformat
+    70 0000005A FF35[16000000]                  push dword [filedesc]
+    71 00000060 FF15[00000000]                  call [fprintf]
+    72 00000066 83C410                          add esp, 4*4
+    73                                          
+    74                                          ;next number
+    75 00000069 EBB2                            jmp repeat
+    76                                          
+    77                                          ; close the file
+    78                                          closefile:
+    79 0000006B FF35[16000000]                  push dword [filedesc]
+    80 00000071 FF15[00000000]                  call [fclose]
+    81 00000077 83C404                          add esp, 4
+    82                                          
+    83                                      end:
+    84                                          ; exit(0)
+    85 0000007A 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    86 0000007C FF15[00000000]                  call    [exit]       ; call exit to terminate the program

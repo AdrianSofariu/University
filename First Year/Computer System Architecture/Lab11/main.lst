@@ -1,0 +1,129 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  
+     8                                  extern scanf, printf, getchar, strtok, exit
+     9                                  import scanf msvcrt.dll
+    10                                  import printf msvcrt.dll              
+    11                                  import getchar msvcrt.dll
+    12                                  import strtok msvcrt.dll
+    13                                  import exit msvcrt.dll
+    14                                  
+    15                                                            
+    16                                  ;Read an integer (positive number) n from keyboard. Then read n sentences containing at least n words (no validation needed).
+    17                                  ;Print the string containing the concatenation of the word i of the sentence i, for i=1,n (separated by a space).
+    18                                  ;Example: n=5
+    19                                  ;We read the following 5 sentences:
+    20                                  ;We read the following 5 sentences.
+    21                                  ;Today is monday and it is raining.
+    22                                  ;My favorite book is the one I just showed you.
+    23                                  ;It is pretty cold today.
+    24                                  ;Tomorrow I am going shopping.
+    25                                  
+    26                                  ;The string printed on the screen should be:
+    27                                  ;We is book cold shopping.
+    28                                  
+    29                                  
+    30                                  section .data
+    31 00000000 202C00                      delimiters db " ,", 0
+    32 00000003 20256400                    format db " %d", 0
+    33 00000007 20255B5E0A5D252A63-         formatStr db " %[^", 0x0a,"]%*c", 0
+    33 00000010 00                 
+    34 00000011 257300                      formatWrd db "%s", 0
+    35 00000014 2000                        space db " ", 0
+    36 00000016 00                          n db 0
+    37 00000017 <res 00000100>              new_sentence resb 256
+    38 00000117 <res 00000100>              sentence resb 256
+    39 00000217 00                          counter db 0
+    40                                  
+    41                                  section .text
+    42                                  
+    43                                      get_word:
+    44                                          ; Get the i-th word
+    45 00000000 55                              push ebp
+    46 00000001 89E5                            mov ebp, esp
+    47 00000003 8B442408                        mov eax, [esp + 8] ; sentence
+    48 00000007 8B5C240C                        mov ebx, [esp + 12] ; i
+    49                                          
+    50 0000000B 68[00000000]                    push dword delimiters
+    51 00000010 50                              push eax
+    52 00000011 FF15[00000000]                  call [strtok]
+    53 00000017 83C408                          add esp, 8
+    54 0000001A 4B                              dec ebx
+    55 0000001B 7413                            jz func_end
+    56                                          
+    57                                          loop_word:
+    58 0000001D 68[00000000]                        push dword delimiters
+    59 00000022 6A00                                push dword 0
+    60 00000024 FF15[00000000]                      call [strtok]
+    61 0000002A 83C408                              add esp, 8
+    62 0000002D 4B                                  dec ebx
+    63 0000002E 75ED                                jnz loop_word
+    64                                              
+    65                                          func_end:
+    66 00000030 5D                                  pop ebp
+    67 00000031 C3                                  ret
+    68                                      
+    69                                      
+    70                                      start:
+    71                                      ; Read the number of sentences
+    72 00000032 68[16000000]                push n
+    73 00000037 68[03000000]                push format
+    74 0000003C FF15[00000000]              call [scanf]
+    75 00000042 83C408                      add esp, 8
+    76                                      
+    77                                      ; Prepare to store the words
+    78 00000045 BF[17000000]                mov edi, new_sentence
+    79 0000004A FC                          cld
+    80                                  
+    81                                      ; Loop n times to read each sentence and get the i-th word
+    82 0000004B 8B0D[16000000]              mov ecx, [n]
+    83                                      loop_start:
+    84                                      
+    85                                          ; save loop
+    86 00000051 51                              push ecx
+    87                                          
+    88                                          ; read sentence
+    89 00000052 68[17010000]                    push dword sentence
+    90 00000057 68[07000000]                    push dword formatStr
+    91 0000005C FF15[00000000]                  call [scanf]
+    92 00000062 83C408                          add esp, 8
+    93                                          
+    94                                          ; get i'th word of the sentence
+    95 00000065 FE05[17020000]                  inc byte [counter]
+    96                                          
+    97 0000006B FF35[17020000]                  push dword [counter]
+    98 00000071 68[17010000]                    push sentence
+    99 00000076 E885FFFFFF                      call get_word
+   100 0000007B 83C408                          add esp, 8
+   101                                          
+   102                                          ; Store the word
+   103 0000007E 89C6                            mov esi, eax ; Source address
+   104                                          
+   105                                          copy_word:
+   106 00000080 AC                                  lodsb ; Load byte at address DS:(E)SI into AL
+   107 00000081 84C0                                test al, al ; Test if AL is null
+   108 00000083 7403                                jz end_copy ; If not, continue copying
+   109 00000085 AA                                  stosb ; Store AL at address ES:(E)DI
+   110 00000086 EBF8                                jmp copy_word
+   111                                          end_copy:
+   112 00000088 A0[14000000]                        mov al, [space]
+   113 0000008D AA                                  stosb ; store a space
+   114                                  
+   115 0000008E 59                              pop ecx
+   116 0000008F E2C0                            loop loop_start
+   117                                      ; add a \0 character
+   118 00000091 B000                        mov al, 0
+   119 00000093 AA                          stosb
+   120                                      
+   121 00000094 68[17000000]                push dword new_sentence ; Push the address of new_sentence
+   122 00000099 68[11000000]                push dword formatWrd ; Push the format string
+   123 0000009E FF15[00000000]              call [printf] ; Call printf
+   124 000000A4 83C408                      add esp, 8 ; Clean up the stack
+   125                                  
+   126                                      ; Exit the program
+   127 000000A7 6A00                        push dword 0
+   128 000000A9 FF15[00000000]              call [exit]

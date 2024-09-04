@@ -1,0 +1,32 @@
+     1                                  bits 32
+     2                                  
+     3                                  global _display_in_octal
+     4                                  
+     5                                  section .data
+     6 00000000 256F00                      format db "%o", 0
+     7                                  
+     8                                  section .text
+     9                                  _display_in_octal:
+    10 00000000 55                          push ebp
+    11 00000001 89E5                        mov ebp, esp
+    12                                  
+    13 00000003 B800000000                  mov eax, 0
+    14 00000008 8B7508                      mov esi, [ebp+8]
+    15 0000000B B900000000                  mov ecx, 0
+    16                                  
+    17                                      ; Convert binary string to integer
+    18                                      next_digit:
+    19 00000010 AC                              lodsb
+    20 00000011 D1E1                            shl ecx, 1
+    21 00000013 83E830                          sub eax, '0'
+    22 00000016 01C1                            add ecx, eax
+    23 00000018 833E00                          cmp dword [esi], 0
+    24 0000001B 75F3                            jne next_digit
+    25                                  
+    26                                      ; Return integer in eax
+    27 0000001D B800000000                  mov eax, 0
+    28 00000022 89C8                        mov eax, ecx
+    29                                  
+    30 00000024 89EC                        mov esp, ebp
+    31 00000026 5D                          pop ebp
+    32 00000027 C3                          ret
