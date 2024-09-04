@@ -1,0 +1,53 @@
+#pragma once
+#include "Movie.h"
+#include "Exceptions.h"
+#include <vector>
+
+class Repository
+{
+protected:
+	std::vector<Movie> movies;
+
+public:
+	Repository() {};
+	virtual ~Repository() {};
+
+	// Adds a movie to the repository.
+	// Input: movie - Movie.
+	// Output: the movie is added to the repository.
+	// Throws: exception if the movie is already in the repository.
+	virtual void addMovie(const Movie& movie);
+
+	// Deletes a movie from the repository.
+	// Input: movie - Movie.
+	// Output: the movie is deleted from the repository.
+	// Throws: exception if the movie is not in the repository.
+	virtual void deleteMovie(const Movie& movie);
+
+	// Updates a movie from the repository.
+	// Input: movie - Movie, new_movie - Movie.
+	// Output: the movie is updated in the repository.
+	// Throws: exception if the movie is not in the repository.
+	virtual void updateMovie(const Movie& movie, const Movie& new_movie);
+
+	// Finds a movie in the repository.
+	// Input: movie - Movie.
+	// Output: the movie or null if it is not in the repository.
+	Movie* findMovie(const Movie& movie);
+
+	Movie findMovieByTitle(const std::string& title);
+
+	// Gets the length of the repo
+	int getLength() const;
+
+	// Overload [] operator
+	Movie& operator[](int index);
+
+	// get all elements from the repository
+	std::vector<Movie> getRepo() const { return movies; };
+
+};
+
+// Tests the Repository class.
+void testRepository();
+
