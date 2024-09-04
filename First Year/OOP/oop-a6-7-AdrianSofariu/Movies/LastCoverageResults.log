@@ -1,0 +1,21 @@
+[2024-04-10 12:31:28] [info] Start Program:
+Path:"C:\Uni\OOP\assignments\oop-a4-5-AdrianSofariu\Movies\x64\Debug\Movies.exe"
+Arguments:
+Working directory: "C:\Uni\OOP\assignments\oop-a4-5-AdrianSofariu\Movies\"
+Modules: Selected: C:\Uni\OOP\assignments\oop-a4-5-AdrianSofariu\Movies\x64\Debug\Movies.exe Excluded: 
+Sources: Selected: C:\Uni\OOP\assignments\oop-a4-5-AdrianSofariu\Movies Excluded: UserInterface.cpp UserInterface.h 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: Binary C:\Users\Asus\AppData\Local\Temp\jygvsjg4.mzu 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+
+[2024-04-10 12:31:28] [info] Module: C:\Uni\OOP\assignments\oop-a4-5-AdrianSofariu\Movies\x64\Debug\Movies.exe is selected because it matches selected pattern: C:\Uni\OOP\assignments\oop-a4-5-AdrianSofariu\Movies\x64\Debug\Movies.exe
+[2024-04-10 12:31:28] [info] ----------------------------------------------------
+[2024-04-10 12:31:28] [info] Coverage binary generated in file: C:\Users\Asus\AppData\Local\Temp\jygvsjg4.mzu
+[2024-04-10 12:31:28] [info] ----------------------------------------------------
