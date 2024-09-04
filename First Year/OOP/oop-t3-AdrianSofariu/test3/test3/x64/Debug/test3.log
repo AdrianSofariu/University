@@ -1,0 +1,6 @@
+﻿  FilterModel.cpp
+  main.cpp
+  test3.cpp
+C:\Uni\OOP\assignments\oop-t3-AdrianSofariu\test3\FilterModel.cpp(23,14): warning C4834: discarding return value of function with [[nodiscard]] attribute
+  moc_test3.cpp
+  test3.vcxproj -> C:\Uni\OOP\assignments\oop-t3-AdrianSofariu\test3\x64\Debug\test3.exe

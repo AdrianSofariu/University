@@ -1,0 +1,5 @@
+Antibiotic|Amoxicillin|nausea,vomiting
+Antibiotic|Ciprofloxacin|diarrhea,rash
+Painkiller|Ibuprofen|stomach pain,dizziness
+Painkiller|Acetaminophen|headache,rash
+Antidepressant|Fluoxetine|insomnia,dry mouth
