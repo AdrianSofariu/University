@@ -1,0 +1,10 @@
+Day: 15 Amount: 908 Type: restaurant
+Day: 15 Amount: 214 Type: entertainment
+Day: 21 Amount: 106 Type: restaurant
+Day: 2 Amount: 77 Type: bills
+Day: 2 Amount: 909 Type: restaurant
+Day: 9 Amount: 996 Type: pocket
+Day: 15 Amount: 321 Type: pocket
+Day: 3 Amount: 302 Type: salary
+Day: 16 Amount: 699 Type: pocket
+Day: 23 Amount: 374 Type: pocket
