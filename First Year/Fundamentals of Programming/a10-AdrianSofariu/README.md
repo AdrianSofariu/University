@@ -25,7 +25,7 @@ This project was developed as part of an **university assignment**, aimed at app
   2. **Moving pieces**: Once all pieces are placed, players take turns moving them to adjacent positions.
   3. **Jumping**: When a player has fewer than 3 pieces, they can "jump" to any empty spot on the board.
 
-- **Board Display**: The board is displayed in a text-based format, with pieces represented as ‘X’ (player) and ‘O’ (AI).
+- **Board Display**: The board is displayed in a text-based format, with pieces represented as ‘w’ (player) and ‘b’ (AI).
 
 - **Winning Condition**: The game ends when a player reduces the opponent to two pieces or when the opponent is unable to make a valid move.
 
