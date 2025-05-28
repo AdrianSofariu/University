@@ -1,0 +1,10 @@
+C:\Uni\SGBD\MiniFacebook\obj\Debug\MiniFacebook.csproj.AssemblyReference.cache
+C:\Uni\SGBD\MiniFacebook\obj\Debug\MiniFacebook.Form1.resources
+C:\Uni\SGBD\MiniFacebook\obj\Debug\MiniFacebook.Properties.Resources.resources
+C:\Uni\SGBD\MiniFacebook\obj\Debug\MiniFacebook.csproj.GenerateResource.cache
+C:\Uni\SGBD\MiniFacebook\obj\Debug\MiniFacebook.csproj.CoreCompileInputs.cache
+C:\Uni\SGBD\MiniFacebook\bin\Debug\MiniFacebook.exe.config
+C:\Uni\SGBD\MiniFacebook\bin\Debug\MiniFacebook.exe
+C:\Uni\SGBD\MiniFacebook\bin\Debug\MiniFacebook.pdb
+C:\Uni\SGBD\MiniFacebook\obj\Debug\MiniFacebook.exe
+C:\Uni\SGBD\MiniFacebook\obj\Debug\MiniFacebook.pdb
