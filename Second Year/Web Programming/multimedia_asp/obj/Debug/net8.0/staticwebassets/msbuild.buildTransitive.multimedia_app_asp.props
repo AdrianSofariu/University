@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\multimedia_app_asp.props" />
+</Project>
