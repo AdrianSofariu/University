@@ -1,0 +1,12 @@
+AI Data Set
+
+
+m features/characteristics
+i samples/records
+
+Xi = (Xi1, Xi2, ... Xim)
+
+Xi -> Xi/||Xi||
+
+
+set = training + testing
