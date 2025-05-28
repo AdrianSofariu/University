@@ -1,0 +1,214 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+h1,
+h2 {
+  text-align: center;
+  color: #222;
+}
+
+/* Form layout */
+form {
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Label + Input row */
+.form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-row label {
+  width: 100px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.form-row input[type="text"] {
+  flex-grow: 1;
+  padding: 8px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-actions {
+  text-align: right;
+}
+
+/* Submit button */
+button[type="submit"] {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+/*List Controls*/
+#listControls {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#filterControls {
+  flex-grow: 1;
+}
+
+#listControls a {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* File list styling */
+ul#fileList {
+  list-style-type: none;
+  padding: 2%;
+  margin: 20px auto; /* Centers the list horizontally */
+  width: 80%; /* Adjust the width of the list, you can change this percentage */
+  background-color: #f4f4f4; /* Slightly darker background */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow to lift the list */
+}
+
+ul#fileList li {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+ul#fileList li .file-info {
+  flex-grow: 1;
+}
+
+ul#fileList li .file-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: right;
+}
+
+ul#fileList li a {
+  margin: 0 5px;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+ul#fileList li a:hover {
+  text-decoration: underline;
+}
+
+ul#fileList li:last-child {
+  border-bottom: none;
+}
+
+/* Select and filter text */
+select,
+#prevFilter,
+#currentFilter {
+  font-size: 1em;
+  margin: 10px 0;
+}
+
+a {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+/* File details section */
+.file-details {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.file-details p {
+  font-size: 1.2em;
+  line-height: 1.6em;
+}
+
+.file-details strong {
+  font-weight: bold;
+}
+
+/*Delete confirmation*/
+#centerDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#deleteForm {
+  background-color: transparent;
+  box-shadow: none;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#backHref {
+  width: 20%;
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Responsive behavior */
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-row label {
+    margin-bottom: 5px;
+  }
+
+  #fileList li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

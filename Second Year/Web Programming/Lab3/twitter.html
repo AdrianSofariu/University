@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Twitter Dark Mode UI</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/3bea93b937.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <div class="logo">
+          <i class="fa-brands fa-x-twitter" style="font-size: 30px"></i>
+        </div>
+        <ul>
+          <li>
+            <b><i class="fa-solid fa-house fa-fw" id="navicons"></i>Home</b>
+          </li>
+          <li>
+            <i class="fa-solid fa-magnifying-glass fa-fw" id="navicons"></i
+            >Explore
+          </li>
+          <li>
+            <i class="fa-regular fa-bell fa-fw" id="navicons"></i>Notifications
+          </li>
+          <li>
+            <i class="fa-regular fa-envelope fa-fw" id="navicons"></i>Messages
+          </li>
+          <li>
+            <i class="fa-solid fa-guarani-sign fa-fw" id="navicons"></i>Grok
+          </li>
+          <li>
+            <i class="fa-regular fa-bookmark fa-fw" id="navicons"></i>Bookmarks
+          </li>
+          <li>
+            <i class="fa-solid fa-user-group fa-fw" id="navicons"></i
+            >Communities
+          </li>
+          <li>
+            <i class="fa-solid fa-check-to-slot fa-fw" id="navicons"></i>Premium
+          </li>
+          <li>
+            <i class="fa-solid fa-bolt fa-fw" id="navicons"></i>Verified Orgs
+          </li>
+          <li><i class="fa-regular fa-user fa-fw" id="navicons"></i>Profile</li>
+          <li><i class="fa-solid fa-ellipsis fa-fw" id="navicons"></i>More</li>
+        </ul>
+        <!--Post Button-->
+        <button class="post-button">Post</button>
+
+        <!--Profile-->
+        <div class="profile">
+          <img
+            class="profile-img"
+            src="C:\Users\Asus\OneDrive\Imagini\Mavuika4K.jpg"
+          />
+          <div class="profile-info">
+            <p class="username"><strong>FireUser</strong></p>
+            <p class="usertag">@FireUser</p>
+          </div>
+          <i class="fa-solid fa-ellipsis" id="profileicon"></i>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!--Tabs-->
+        <div class="tabs">
+          <div class="tab" id="selected-tab"><b>For you</b></div>
+          <div class="tab">Following</div>
+          <div class="tab">the rats</div>
+        </div>
+        <!--What is happening-->
+        <div class="tweet-box">
+          <div class="tweet-box-profile">
+            <img src="C:\Users\Asus\OneDrive\Imagini\Mavuika4K.jpg" />
+          </div>
+          <div class="tweet-box-input">
+            <input type="text" placeholder="What's happening?" />
+            <div class="tweet-box-options">
+              <ul>
+                <li><i class="fa-regular fa-image fa-fw"></i></li>
+                <li><i class="fa-regular fa-file fa-fw"></i></li>
+                <li><i class="fa-solid fa-guarani-sign fa-fw"></i></li>
+                <li><i class="fa-solid fa-square-poll-vertical fa-fw"></i></li>
+                <li><i class="fa-regular fa-face-smile fa-fw"></i></li>
+                <li><i class="fa-regular fa-calendar fa-fw"></i></li>
+                <li><i class="fa-solid fa-location-dot fa-fw"></i></li>
+              </ul>
+            </div>
+          </div>
+          <div class="tweet-box-button">
+            <button>Post</button>
+          </div>
+        </div>
+
+        <!--Tweets-->
+        <div class="tweet">
+          <div class="tweet-content">
+            <div class="tweet-box-profile">
+              <img
+                src="https://preview.redd.it/the-greatest-technician-thats-ever-lived-v0-2vntn64ay6ed1.jpeg?auto=webp&s=7ed32e76fb0045ccf6111eea7462098371ffdc5d"
+              />
+            </div>
+            <div class="tweet-info">
+              <div class="tweet-header">
+                <p class="tweet-author">
+                  <strong>SalemTechsperts</strong> @GreatestTech · 2h
+                </p>
+                <i class="fa-solid fa-ellipsis"></i>
+              </div>
+              <div class="tweet-text">
+                <p>
+                  Every day I wake up with a plan to be productive, and every
+                  day the universe responds with a test. First, my phone
+                  mysteriously ends up in my hand. Then, one quick scroll turns
+                  into an hour. Suddenly, I'm deep into a documentary about a
+                  topic I never knew existed. Productivity? Maybe tomorrow. At
+                  this point, my to-do list is just a list of things I feel bad
+                  about ignoring. But hey, at least I know everything about
+                  medieval bread-making now.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="tweet-controls">
+            <ul>
+              <li><i class="fa-regular fa-comment"></i> 100</li>
+              <li><i class="fa-solid fa-retweet"></i> 20</li>
+              <li><i class="fa-regular fa-heart"></i> 2K</li>
+              <li><i class="fa-solid fa-chart-simple"></i> 3K</li>
+            </ul>
+            <i class="fa-regular fa-bookmark" id="tweet-cmd"></i>
+            <i class="fa-solid fa-upload" id="tweet-cmd"> </i>
+          </div>
+        </div>
+        <div class="tweet">
+          <div class="tweet-content">
+            <div class="tweet-box-profile">
+              <img src="C:\Users\Asus\OneDrive\Imagini\Mavuika4K.jpg" />
+            </div>
+            <div class="tweet-info">
+              <div class="tweet-header">
+                <p class="tweet-author">
+                  <strong>FireUser</strong> @FireUser · 2h
+                </p>
+                <i class="fa-solid fa-ellipsis"></i>
+              </div>
+              <div class="tweet-text">
+                <p>
+                  Here is my newest wallpaper. I hope you like it. I worked hard
+                  on it. #wallpaper #4k #art
+                </p>
+                <img
+                  src="C:\Wallpapers\wallpapersden.com_witcher-3-artstation-fan-art_2560x1600.jpg"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="tweet-controls">
+            <ul>
+              <li><i class="fa-regular fa-comment"></i> 10</li>
+              <li><i class="fa-solid fa-retweet"></i> 20</li>
+              <li><i class="fa-regular fa-heart"></i> 100</li>
+              <li><i class="fa-solid fa-chart-simple"></i> 1K</li>
+            </ul>
+            <i class="fa-regular fa-bookmark" id="tweet-cmd"></i>
+            <i class="fa-solid fa-upload" id="tweet-cmd"> </i>
+          </div>
+        </div>
+      </main>
+
+      <!-- Right Sidebar -->
+      <aside class="right-sidebar">
+        <!--Searchbar-->
+        <input type="text" placeholder="&#x1F50D;&#xFE0E; Search" />
+
+        <!--Premium-->
+        <div class="sidebar-box">
+          <p><strong>Subscribe to Premium</strong></p>
+          <p class="subscribe-text">
+            Subscribe to unlock new features and if eligible, receive a share of
+            revenue.
+          </p>
+          <button class="subscribe-button"><b>Subscribe</b></button>
+        </div>
+
+        <!--Who to follow-->
+        <div class="sidebar-box">
+          <p><strong>Who to follow</strong></p>
+          <!--s1-->
+          <div class="follow-suggestions">
+            <div class="suggestion-profile">
+              <img
+                class="suggestion-img"
+                src="https://preview.redd.it/the-greatest-technician-thats-ever-lived-v0-2vntn64ay6ed1.jpeg?auto=webp&s=7ed32e76fb0045ccf6111eea7462098371ffdc5d"
+              />
+              <div class="suggestion-info">
+                <p class="username"><strong>SalemTechsperts</strong></p>
+                <p class="usertag">@GreatestTech</p>
+              </div>
+              <button class="follow-button">Follow</button>
+            </div>
+            <!--s2-->
+            <div class="suggestion-profile">
+              <img
+                class="suggestion-img"
+                src="C:\Wallpapers\horace-hsu-drx-final-finalfinal.jpg"
+              />
+              <div class="suggestion-info">
+                <div class="verified-user">
+                  <p class="username">
+                    <strong>DRX</strong>
+                  </p>
+                  <i class="fa-solid fa-circle-check" id="verified-icon"></i>
+                </div>
+                <p class="usertag">@DRX_LoL</p>
+              </div>
+              <button class="follow-button">Follow</button>
+            </div>
+            <!--s3-->
+            <div class="suggestion-profile">
+              <img
+                class="suggestion-img"
+                src="C:\Wallpapers\capitano-genshin-impact.jpg"
+              />
+              <div class="suggestion-info">
+                <p class="username"><strong>Capitano</strong></p>
+                <p class="usertag">@cap</p>
+              </div>
+
+              <button class="follow-button">Follow</button>
+            </div>
+          </div>
+          <p class="more-label">Show more</p>
+        </div>
+
+        <!--Popular-->
+        <div class="sidebar-box">
+          <p><strong>What's happening</strong></p>
+          <div class="topic">
+            <div class="topic-info">
+              <p>Trending</p>
+              <p class="topic-title"><b>#KCWIN</b></p>
+              <p>6,234 posts</p>
+            </div>
+            <i class="fa-solid fa-ellipsis" id="topic-option"></i>
+          </div>
+          <div class="topic">
+            <div class="topic-info">
+              <p>Trending in Romania</p>
+              <p class="topic-title"><b>#AustralianGP</b></p>
+              <p>79,7K posts</p>
+            </div>
+            <i class="fa-solid fa-ellipsis" id="topic-option"></i>
+          </div>
+          <div class="topic">
+            <div class="topic-info">
+              <p>Sports · Trending</p>
+              <p class="topic-title"><b>Canna</b></p>
+              <p>6,009 posts</p>
+            </div>
+            <i class="fa-solid fa-ellipsis" id="topic-option"></i>
+          </div>
+          <div class="topic">
+            <div class="topic-info">
+              <p>Trending</p>
+              <p class="topic-title"><b>Wooje</b></p>
+              <p>1,321 posts</p>
+            </div>
+            <i class="fa-solid fa-ellipsis" id="topic-option"></i>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <button class="grok-button">
+      <img
+        src="https://play-lh.googleusercontent.com/dQRKhi30KpzG3gww3TdVLzyIAVuOAWylnAcgnEUxqfpm2A8dEt2sgApVvtKAy-DO8aI"
+      />
+    </button>
+  </body>
+</html>

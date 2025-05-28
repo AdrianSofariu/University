@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="jquery-2.0.3.js"></script>
+
+    <style>
+      #dialog {
+        display: none;
+        position: absolute;
+        width: 300px;
+        height: 200px;
+        background-color: white;
+        border: 2px solid #333;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+        z-index: 1000;
+        overflow: hidden;
+      }
+
+      #dialog-header {
+        background-color: #555;
+        color: white;
+        padding: 10px;
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        user-select: none;
+      }
+
+      #dialog-content {
+        padding: 10px;
+        height: calc(
+          100% - 40px
+        ); /* Ensure content area takes most of the dialog height */
+        overflow: auto; /* Make the content scrollable when the dialog becomes small */
+      }
+
+      #dialog-close {
+        float: right;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      #dialog-close:hover {
+        background-color: #555;
+      }
+
+      #open-dialog {
+        margin: 20px;
+        padding: 10px 20px;
+        position: absolute;
+        top: 45%;
+        left: 45%;
+      }
+
+      .resize-handle {
+        position: absolute;
+        background: transparent;
+        z-index: 10;
+      }
+
+      .resize-top {
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 10px;
+        cursor: n-resize;
+      }
+
+      .resize-right {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 10px;
+        cursor: e-resize;
+      }
+
+      .resize-bottom {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 10px;
+        cursor: s-resize;
+      }
+
+      .resize-left {
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 10px;
+        cursor: w-resize;
+      }
+
+      .resize-top-left {
+        top: 0;
+        left: 0;
+        width: 15px;
+        height: 15px;
+        cursor: nw-resize;
+      }
+
+      .resize-top-right {
+        top: 0;
+        right: 0;
+        width: 15px;
+        height: 15px;
+        cursor: ne-resize;
+      }
+
+      .resize-bottom-left {
+        bottom: 0;
+        left: 0;
+        width: 15px;
+        height: 15px;
+        cursor: sw-resize;
+      }
+
+      .resize-bottom-right {
+        bottom: 0;
+        right: 0;
+        width: 15px;
+        height: 15px;
+        cursor: se-resize;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button id="open-dialog">Open Dialog</button>
+
+    <div id="dialog">
+      <div id="dialog-header">
+        <span>Basic dialog</span>
+        <button id="dialog-close">&#10006;</button>
+      </div>
+      <div id="dialog-content">
+        <p>
+          This is a custom dialog window implemented only with jQuery. You can
+          drag, resize, and close this window.
+        </p>
+      </div>
+      <div class="resize-handle resize-top"></div>
+      <div class="resize-handle resize-right"></div>
+      <div class="resize-handle resize-bottom"></div>
+      <div class="resize-handle resize-left"></div>
+      <div class="resize-handle resize-top-left"></div>
+      <div class="resize-handle resize-top-right"></div>
+      <div class="resize-handle resize-bottom-left"></div>
+      <div class="resize-handle resize-bottom-right"></div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        const MIN_WIDTH = 200;
+        const MIN_HEIGHT = 150;
+        const $dialog = $("#dialog");
+        const $dialogHeader = $("#dialog-header");
+        const $resizeHandles = $(".resize-handle");
+        let isDragging = false,
+          offsetX = 0,
+          offsetY = 0;
+        let isResizing = false,
+          startX,
+          startY,
+          startWidth,
+          startHeight,
+          startLeft,
+          startTop;
+        let resizeDirection = "";
+
+        // Open dialog button click event in the middle of the screen
+        $("#open-dialog").click(function () {
+          $dialog.css({
+            display: "block",
+            top: $(window).height() / 2 - $dialog.height() / 2 + "px",
+            left: $(window).width() / 2 - $dialog.width() / 2 + "px",
+          });
+          $("#open-dialog").hide();
+        });
+
+        // Close dialog button click event
+        $("#dialog-close").click(function () {
+          $dialog.hide();
+          $("#open-dialog").show();
+        });
+
+        // Drag Click event
+        $dialogHeader.mousedown(function (e) {
+          $("body").css("user-select", "none");
+          isDragging = true;
+          offsetX = e.clientX - $dialog.position().left;
+          offsetY = e.clientY - $dialog.position().top;
+        });
+
+        // Resize Click event
+        $(".resize-handle").mousedown(function (e) {
+          isResizing = true;
+          resizeDirection = $(this).attr("class").split(" ")[1];
+          startX = e.clientX;
+          startY = e.clientY;
+          startWidth = parseInt($dialog.css("width"), 10);
+          startHeight = parseInt($dialog.css("height"), 10);
+          startLeft = parseInt($dialog.css("left"), 10);
+          startTop = parseInt($dialog.css("top"), 10);
+          e.preventDefault();
+        });
+
+        //Resize
+        function handleResize(e) {
+          const windowWidth = $(window).width();
+          const windowHeight = $(window).height();
+
+          let newWidth = startWidth;
+          let newHeight = startHeight;
+          let newLeft = startLeft;
+          let newTop = startTop;
+
+          const deltaX = e.clientX - startX;
+          const deltaY = e.clientY - startY;
+
+          // Handle each resize direction
+          switch (resizeDirection) {
+            case "resize-right":
+              newWidth = Math.max(
+                MIN_WIDTH,
+                Math.min(startWidth + deltaX, windowWidth - startLeft)
+              );
+              break;
+
+            case "resize-left":
+              newWidth = Math.max(
+                MIN_WIDTH,
+                Math.min(startWidth - deltaX, startLeft + startWidth)
+              );
+              if (newWidth > MIN_WIDTH) {
+                newLeft = startLeft + deltaX;
+              } else {
+                // Snap to minimum width without moving
+                newWidth = MIN_WIDTH;
+                newLeft = startLeft + (startWidth - MIN_WIDTH);
+              }
+              break;
+
+            case "resize-bottom":
+              newHeight = Math.max(
+                MIN_HEIGHT,
+                Math.min(startHeight + deltaY, windowHeight - startTop)
+              );
+              break;
+
+            case "resize-top":
+              newHeight = Math.max(
+                MIN_HEIGHT,
+                Math.min(startHeight - deltaY, startTop + startHeight)
+              );
+              if (newHeight > MIN_HEIGHT) {
+                newTop = startTop + deltaY;
+              } else {
+                // Snap to minimum height without moving
+                newHeight = MIN_HEIGHT;
+                newTop = startTop + (startHeight - MIN_HEIGHT);
+              }
+              break;
+
+            case "resize-top-right":
+              newHeight = Math.max(
+                MIN_HEIGHT,
+                Math.min(startHeight - deltaY, startTop + startHeight)
+              );
+              newWidth = Math.max(
+                MIN_WIDTH,
+                Math.min(startWidth + deltaX, windowWidth - startLeft)
+              );
+              if (newHeight > MIN_HEIGHT) {
+                newTop = startTop + deltaY;
+              } else {
+                newHeight = MIN_HEIGHT;
+                newTop = startTop + (startHeight - MIN_HEIGHT);
+              }
+              break;
+
+            case "resize-top-left":
+              newHeight = Math.max(
+                MIN_HEIGHT,
+                Math.min(startHeight - deltaY, startTop + startHeight)
+              );
+              if (newHeight > MIN_HEIGHT) {
+                newTop = startTop + deltaY;
+              } else {
+                newHeight = MIN_HEIGHT;
+                newTop = startTop + (startHeight - MIN_HEIGHT);
+              }
+              newWidth = Math.max(
+                MIN_WIDTH,
+                Math.min(startWidth - deltaX, startLeft + startWidth)
+              );
+              if (newWidth > MIN_WIDTH) {
+                newLeft = startLeft + deltaX;
+              } else {
+                newWidth = MIN_WIDTH;
+                newLeft = startLeft + (startWidth - MIN_WIDTH);
+              }
+              break;
+
+            case "resize-bottom-right":
+              newHeight = Math.max(
+                MIN_HEIGHT,
+                Math.min(startHeight + deltaY, windowHeight - startTop)
+              );
+              newWidth = Math.max(
+                MIN_WIDTH,
+                Math.min(startWidth + deltaX, windowWidth - startLeft)
+              );
+              break;
+
+            case "resize-bottom-left":
+              newHeight = Math.max(
+                MIN_HEIGHT,
+                Math.min(startHeight + deltaY, windowHeight - startTop)
+              );
+              newWidth = Math.max(
+                MIN_WIDTH,
+                Math.min(startWidth - deltaX, startLeft + startWidth)
+              );
+              if (newWidth > MIN_WIDTH) {
+                newLeft = startLeft + deltaX;
+              } else {
+                newWidth = MIN_WIDTH;
+                newLeft = startLeft + (startWidth - MIN_WIDTH);
+              }
+              break;
+          }
+
+          $dialog.css({
+            width: newWidth + "px",
+            height: newHeight + "px",
+            left: newLeft + "px",
+            top: newTop + "px",
+          });
+        }
+
+        //Dragging
+        function handleDrag(e) {
+          const dialogWidth = $dialog.outerWidth();
+          const dialogHeight = $dialog.outerHeight();
+          const windowWidth = $(window).width();
+          const windowHeight = $(window).height();
+
+          let newLeft = e.pageX - offsetX;
+          let newTop = e.pageY - offsetY;
+
+          // Clamp left/right
+          newLeft = Math.max(0, Math.min(newLeft, windowWidth - dialogWidth));
+          // Clamp top/bottom
+          newTop = Math.max(0, Math.min(newTop, windowHeight - dialogHeight));
+
+          $dialog.css({
+            top: newTop,
+            left: newLeft,
+          });
+        }
+
+        // Handle Resize and Dragging
+        $(document)
+          .on("mousemove", function (e) {
+            if (isDragging) {
+              handleDrag(e);
+            } else if (isResizing) {
+              handleResize(e);
+            }
+          })
+          .on("mouseup", function () {
+            isDragging = false;
+            isResizing = false;
+            $("body").css("user-select", "");
+          });
+      });
+    </script>
+  </body>
+</html>

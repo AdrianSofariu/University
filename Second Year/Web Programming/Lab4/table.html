@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sortable Table</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
+      th {
+        cursor: pointer;
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="sortedTable">
+      <thead>
+        <tr>
+          <th>Column 1</th>
+          <th>Column 2</th>
+          <th>Column 3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Apple</td>
+          <td>5</td>
+          <td>Red</td>
+        </tr>
+        <tr>
+          <td>Orange</td>
+          <td>3</td>
+          <td>Orange</td>
+        </tr>
+        <tr>
+          <td>Banana</td>
+          <td>7</td>
+          <td>Yellow</td>
+        </tr>
+        <tr>
+          <td>Pineapple</td>
+          <td>2</td>
+          <td>Yellow</td>
+        </tr>
+      </tbody>
+    </table>
+    <button onclick="mergeColumns(sortedTable, 0, 1)">Merge Columns</button>
+
+    <script>
+      const table = document.getElementById("sortedTable");
+      const headers = table.querySelectorAll("th");
+      let sortOrder = Array(headers.length).fill(1); // 1: ascending, -1: descending
+
+      //add event listeners to headers for sorting
+      headers.forEach((header, index) => {
+        header.addEventListener("click", () => {
+          sortTable(index);
+        });
+      });
+
+      // Function to sort the table
+      function sortTable(columnIndex) {
+        const rows = Array.from(table.rows).slice(1); // Exclude header row
+        const isNumeric = !isNaN(rows[0].cells[columnIndex].innerText);
+
+        rows.sort((rowA, rowB) => {
+          const cellA = rowA.cells[columnIndex].innerText;
+          const cellB = rowB.cells[columnIndex].innerText;
+
+          if (isNumeric) {
+            return (
+              (parseFloat(cellA) - parseFloat(cellB)) * sortOrder[columnIndex]
+            );
+          } else {
+            return cellA.localeCompare(cellB) * sortOrder[columnIndex];
+          }
+        });
+
+        rows.forEach((row) => table.tBodies[0].appendChild(row)); // Append sorted rows to the table body
+        //set other columns to default order
+        for (let i = 0; i < sortOrder.length; i++) {
+          if (i !== columnIndex) {
+            sortOrder[i] = 1; // Reset other columns to ascending order
+          } else {
+            sortOrder[i] *= -1; // Set the clicked column to descending order
+          }
+        }
+      }
+
+      function mergeColumns(table, col1, col2) {
+        const rows = Array.from(table.rows); // Exclude header row
+        rows.forEach((row) => {
+          const cell1 = row.cells[col1];
+          const cell2 = row.cells[col2];
+
+          if (cell1 && cell2) {
+            cell1.innerText += `, ${cell2.innerText}`; // Merge the text of the two cells
+            cell2.remove(); // Remove the second cell
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

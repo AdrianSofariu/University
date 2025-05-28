@@ -1,0 +1,74 @@
+body {
+  display: flex;
+  padding: 5%;
+}
+
+.square {
+  height: 10%;
+  aspect-ratio: 1;
+  background-color: red;
+  position: absolute;
+}
+
+#square1 {
+  left: 0;
+  bottom: 0;
+  animation: moveSquare1 3s infinite ease;
+}
+
+#square2 {
+  right: 0;
+  top: 0;
+  animation: moveSquare2 3s infinite ease;
+}
+
+@keyframes moveSquare1 {
+  0%,
+  100% {
+    left: 0;
+    bottom: 0;
+    transform: none;
+    background-color: blue;
+  }
+  40%,
+  60% {
+    left: 45.5%;
+    bottom: 45.5%;
+    transform: none;
+    background-color: blue;
+  }
+  45%,
+  55% {
+    transform: scale(1.3) rotate(-20deg);
+    background-color: red;
+  }
+  55% {
+    transform: scale(1.3) rotate(20deg);
+    background-color: red;
+  }
+}
+
+@keyframes moveSquare2 {
+  0%,
+  100% {
+    right: 0;
+    top: 0;
+    transform: none;
+    background-color: blue;
+  }
+  40%,
+  60% {
+    right: 45.5%;
+    top: 45.5%;
+    transform: none;
+    background-color: blue;
+  }
+  45% {
+    transform: scale(1.3) rotate(20deg);
+    background-color: red;
+  }
+  55% {
+    transform: scale(1.3) rotate(-20deg);
+    background-color: red;
+  }
+}
