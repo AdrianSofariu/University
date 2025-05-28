@@ -1,0 +1,43 @@
+﻿@model multimedia_app_asp.Models.MultimediaFile
+
+@{
+    ViewData["Title"] = "Add File";
+}
+
+<h2>Add Multimedia File</h2>
+
+<form asp-action="Create" method="post" id="addForm">
+    <div class="form-row">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" required />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-row">
+        <label asp-for="Format"></label>
+        <input asp-for="Format" required />
+        <span asp-validation-for="Format" class="text-danger"></span>
+    </div>
+
+    <div class="form-row">
+        <label asp-for="Genre"></label>
+        <input asp-for="Genre" required />
+        <span asp-validation-for="Genre" class="text-danger"></span>
+    </div>
+
+    <div class="form-row">
+        <label asp-for="Path"></label>
+        <input asp-for="Path" required />
+        <span asp-validation-for="Path" class="text-danger"></span>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit">Add</button>
+    </div>
+</form>
+
+<a asp-action="Index">Back</a>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,90 @@
+﻿@model List<multimedia_app_asp.Models.MultimediaFile>
+
+@{
+    var genres = ViewBag.Genres as List<string> ?? new List<string>();
+    var currentFilter = ViewBag.CurrentFilter as string ?? "";
+    var previousFilter = ViewBag.PreviousFilter as string ?? "--";
+    Layout = null;
+    ViewData["Title"] = "Multimedia Collection";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Multimedia Collection</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        #logoutButton {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            padding: 8px 16px;
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        #logoutButton:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+    <a id="logoutButton">Logout</a>
+
+    <h1>Multimedia Collection</h1>
+
+    <div id="listControls">
+        <div id="filterControls">
+            <form method="get" asp-action="Index" asp-controller="Files" id="filterForm">
+                <label for="genre">Select Genre:</label>
+                <select id="genre" name="genreFilter" onchange="document.getElementById('filterForm').submit()">
+                    <option value="">All Genres</option>
+                    @foreach (var genre in genres)
+                    {
+                        <!option value="@genre" @(string.Equals(genre, currentFilter, StringComparison.OrdinalIgnoreCase) ? "selected" : "")>
+                            @genre
+                        </!option>
+                    }
+                </select>
+            </form>
+
+            <p>Previous genre: <span id="prevFilter">@previousFilter</span></p>
+            <p>Last selected genre: <span id="currentFilter">@(!string.IsNullOrEmpty(currentFilter) ? currentFilter : "All Genres")</span></p>
+        </div>
+
+        <a href="@Url.Action("Create", "Files")">Add New File</a>
+    </div>
+
+    <ul id="fileList">
+        @foreach (var file in Model)
+        {
+            <li>
+                <div class="file-info">@file.Title (@file.Format)</div>
+                <div class="file-actions">
+                    <a href="@Url.Action("Details", "Files", new { id = file.Id })">Details</a> |
+                    <a href="@Url.Action("Edit", "Files", new { id = file.Id })">Edit</a> |
+                    <a href="@Url.Action("Delete", "Files", new { id = file.Id })">Delete</a>
+                </div>
+            </li>
+        }
+    </ul>
+    <script>
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            fetch('@Url.Action("Logout", "Auth")', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    window.location.href = '@Url.Action("Login", "AuthView")';
+                })
+                .catch(() => alert('Logout failed.'));
+        });
+    </script>
+</body>
+</html>

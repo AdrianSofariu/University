@@ -1,0 +1,16 @@
+﻿@model multimedia_app_asp.Models.MultimediaFile
+
+@{
+    ViewData["Title"] = "File Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="file-details">
+    <p><strong>Title:</strong> @Model.Title</p>
+    <p><strong>Format:</strong> @Model.Format</p>
+    <p><strong>Genre:</strong> @Model.Genre</p>
+    <p><strong>Path:</strong> @Model.Path</p>
+</div>
+
+<a asp-action="Index">Back to the list</a>
