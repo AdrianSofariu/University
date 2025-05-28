@@ -1,0 +1,29 @@
+<h2>Add Multimedia File</h2>
+
+<form (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <label>Title:</label>
+    <input type="text" [(ngModel)]="title" name="title" required />
+  </div>
+
+  <div class="form-row">
+    <label>Format:</label>
+    <input type="text" [(ngModel)]="format" name="format" required />
+  </div>
+
+  <div class="form-row">
+    <label>Genre:</label>
+    <input type="text" [(ngModel)]="genre" name="genre" required />
+  </div>
+
+  <div class="form-row">
+    <label>Path:</label>
+    <input type="text" [(ngModel)]="path" name="path" required />
+  </div>
+
+  <div class="form-actions">
+    <button type="submit">Add</button>
+  </div>
+</form>
+
+<a routerLink="/">Back</a>

@@ -1,0 +1,40 @@
+<div>
+  <h1>Multimedia Collection</h1>
+
+  <div id="listControls">
+    <div id="filterControls">
+      <!-- Genre selection dropdown -->
+      <label for="genre">Select Genre:</label>
+      <select id="genre" name="genre" (change)="onGenreChange($event)">
+        <option value="">All Genres</option>
+        <option *ngFor="let genre of genres" [value]="genre">
+          {{ genre }}
+        </option>
+      </select>
+
+      <!-- Display the previous genre -->
+      <p>
+        Previous genre: <span>{{ prevFilter }}</span>
+      </p>
+
+      <!-- Display the selected genre -->
+      <p>
+        Last selected genre: <span>{{ currentFilter }}</span>
+      </p>
+    </div>
+    <!-- Button to add new file -->
+    <a [routerLink]="['/add']">Add New File</a>
+  </div>
+
+  <!-- List of multimedia files -->
+  <ul id="fileList">
+    <li *ngFor="let file of files">
+      <div class="file-info">{{ file.title }} ({{ file.format }})</div>
+      <div class="file-actions">
+        <a [routerLink]="['/details', file.id]">Details</a> |
+        <a [routerLink]="['/edit', file.id]">Edit</a> |
+        <a [routerLink]="['/delete', file.id]">Delete</a>
+      </div>
+    </li>
+  </ul>
+</div>

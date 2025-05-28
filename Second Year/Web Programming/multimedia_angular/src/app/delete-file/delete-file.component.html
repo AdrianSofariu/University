@@ -1,0 +1,7 @@
+<div id="centerDiv">
+  <h2>Are you sure you want to delete this file?</h2>
+  <form (ngSubmit)="onDelete()">
+    <button type="submit">Yes, Delete</button>
+  </form>
+  <a [routerLink]="['/']" id="backHref">Cancel</a>
+</div>

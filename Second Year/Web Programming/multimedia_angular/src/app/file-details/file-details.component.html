@@ -1,0 +1,12 @@
+<h1>File Details</h1>
+
+<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+<div *ngIf="fileData" class="file-details">
+  <p><strong>Title:</strong> {{ fileData.title }}</p>
+  <p><strong>Format:</strong> {{ fileData.format }}</p>
+  <p><strong>Genre:</strong> {{ fileData.genre }}</p>
+  <p><strong>Path:</strong> {{ fileData.path }}</p>
+</div>
+
+<a routerLink="/">Back to the list</a>

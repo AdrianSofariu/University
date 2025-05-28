@@ -1,0 +1,39 @@
+<div class="edit-file-container">
+  <h2>Edit Multimedia File</h2>
+
+  <form (ngSubmit)="updateFile()">
+    <input type="hidden" name="id" [(ngModel)]="fileId" required />
+
+    <div class="form-row">
+      <label for="title">Title:</label>
+      <input type="text" id="title" [(ngModel)]="title" name="title" required />
+    </div>
+
+    <div class="form-row">
+      <label for="format">Format:</label>
+      <input
+        type="text"
+        id="format"
+        [(ngModel)]="format"
+        name="format"
+        required
+      />
+    </div>
+
+    <div class="form-row">
+      <label for="genre">Genre:</label>
+      <input type="text" id="genre" [(ngModel)]="genre" name="genre" required />
+    </div>
+
+    <div class="form-row">
+      <label for="path">Path:</label>
+      <input type="text" id="path" [(ngModel)]="path" name="path" required />
+    </div>
+
+    <div class="form-actions">
+      <button type="submit">Update</button>
+    </div>
+  </form>
+
+  <a [routerLink]="['/']">Back</a>
+</div>
