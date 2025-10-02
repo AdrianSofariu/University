@@ -8,7 +8,7 @@ Includes:
 - various web apps created using php, c# and java
 - prolog and lisp assignments
 - sql code from the db-related courses
-and many other things
+- and many other things...
 
 Highlights:
 - Movie Management App (C++, Qt) for OOP course [here](https://github.com/AdrianSofariu/University/tree/main/First%20Year/OOP/oop-a10-AdrianSofariu)
