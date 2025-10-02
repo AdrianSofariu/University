@@ -26,7 +26,7 @@ def bfs(g: DirectedGraph, s: int):
 
 def shortest_path(g, s, t):
     """
-    Find and returns the shortest path in graph g from vertex s to vertex t
+    Finds and returns the shortest path in graph g from vertex s to vertex t
     :return: the path as a sequence of vertices, or None if there is no path
     """
     parent, dist = bfs(g, s)
@@ -42,3 +42,4 @@ def shortest_path(g, s, t):
             vertex = parent[vertex]
         path.insert(0, s)
         return path
+
