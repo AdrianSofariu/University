@@ -1,1 +1,1 @@
-This assignment contains all other assignments I had to work on for this course.
+This assignment contains all other assignments I had to work on for this course. Some basic graph operations are implemented in Python.
